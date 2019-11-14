@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,12 +21,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.web3j.protocol.Web3j;
+import org.web3j.protocol.core.methods.response.Web3ClientVersion;
+import org.web3j.protocol.http.HttpService;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import online.forgottenbit.attendance1.MainActivity;
 import online.forgottenbit.attendance1.R;
 import online.forgottenbit.attendance1.StudentDashBoard;
+import online.forgottenbit.attendance1.util.Web3jConstants;
 
 public class TeacherDashboard extends AppCompatActivity {
 
@@ -35,10 +42,33 @@ public class TeacherDashboard extends AppCompatActivity {
     BatchListAdapter adapter;
     ArrayList<BatchData> list;
 
+    static public Web3j web3j = null;
+    static String clientUrl = null;
+    static String[] accounts = new String[15];
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_dashboard);
+
+        String TAG = "Return";
+
+        //connect to the ethereum client node
+        Start_Connect();
+        // show client details
+        Web3ClientVersion client = null;
+        try {
+            client = web3j
+                    .web3ClientVersion()
+                    .sendAsync()
+                    .get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+        Log.d(TAG, "Connected to " + client.getWeb3ClientVersion() + "\n");
 
         tDB = new TeacherDB(TeacherDashboard.this);
 
@@ -192,5 +222,19 @@ public class TeacherDashboard extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void Start_Connect() {
+        clientUrl = argsToUrl();
+        web3j = Web3j.build(new HttpService(clientUrl));
+    }
+
+    //connection port and ip
+    public String argsToUrl() {
+//        String ip = Web3jConstants.CLIENT_IP;
+//        String port = Web3jConstants.CLIENT_PORT;
+//
+//        return String.format("http://%s:%s", ip, port);
+
     }
 }

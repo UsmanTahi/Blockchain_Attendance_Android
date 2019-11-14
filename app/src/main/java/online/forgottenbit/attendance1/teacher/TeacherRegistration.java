@@ -26,10 +26,25 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import org.w3c.dom.Text;
+import org.web3j.crypto.Credentials;
+import org.web3j.crypto.ECKeyPair;
+import org.web3j.crypto.Keys;
+import org.web3j.protocol.Web3j;
+import org.web3j.tx.gas.DefaultGasProvider;
+import org.web3j.utils.Numeric;
+
+import java.io.FileOutputStream;
+import java.math.BigInteger;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 import online.forgottenbit.attendance1.MainActivity;
 import online.forgottenbit.attendance1.R;
 import online.forgottenbit.attendance1.StudentRegistration;
+import online.forgottenbit.attendance1.contract.Attendees;
+import online.forgottenbit.attendance1.util.Alice;
+import online.forgottenbit.attendance1.util.Web3jConstants;
 
 public class TeacherRegistration extends AppCompatActivity {
 
@@ -44,6 +59,13 @@ public class TeacherRegistration extends AppCompatActivity {
     TeacherDB teacherDB;
 
     int permission_req_code = 1000;
+
+    static final String ERROR = "Error";
+    Attendees contract = null;
+    static ECKeyPair KEY_PAIR =null;
+    public static Credentials CREDENTIALS =null;
+    public static String ADDRESS = null;
+    static public Web3j web3j = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +132,21 @@ public class TeacherRegistration extends AppCompatActivity {
                 long a=teacherDB.insertTRegistrationDetails(nameStr,emailStr,mobStr,getDeviceIMEI());
 
                 Log.e("insert",".. "+a+"  ");
+                // create new private/public key pair
+                final ECKeyPair[] keyPair = {null};
+                try {
+                    keyPair[0] = Keys.createEcKeyPair();
+                } catch (InvalidAlgorithmParameterException e) {
+                    e.printStackTrace();
+                } catch (NoSuchAlgorithmException e) {
+                    e.printStackTrace();
+                    Log.e(ERROR,"No Such Algorithm Exception");
+                } catch (NoSuchProviderException e) {
+                    e.printStackTrace();
+                    Log.e(ERROR,"No Such Provider Exception");
+                }
+
+                createWallet();
                 startActivity(new Intent(TeacherRegistration.this, TeacherDashboard.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                 finish();
             }
@@ -186,6 +223,61 @@ public class TeacherRegistration extends AppCompatActivity {
         //checking if permissions is already granted
         int external_storage_write = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_PHONE_STATE);
         return external_storage_write == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void createWallet(){
+        // create new private/public key pair
+        final ECKeyPair[] keyPair = {null};
+        try {
+            keyPair[0] = Keys.createEcKeyPair();
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            Log.e(ERROR,"No Such Algorithm Exception");
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+            Log.e(ERROR,"No Such Provider Exception");
+        }
+
+        //save the fey pair to the class for further use
+        BigInteger publicKey = keyPair[0].getPublicKey();
+        Alice.PUBLIC_KEY = Numeric.toHexStringWithPrefix(publicKey);
+
+        BigInteger privateKey = keyPair[0].getPrivateKey();
+        Alice.PRIVATE_KEY = Numeric.toHexStringWithPrefix(privateKey);
+        saveFile(Alice.PUBLIC_KEY, "public_key.pem");
+        Log.d("Public",Alice.PUBLIC_KEY);
+        saveFile(Alice.PRIVATE_KEY, "private_key.pem");
+        KEY_PAIR = new ECKeyPair(Numeric.toBigInt(Alice.PRIVATE_KEY), Numeric.toBigInt(Alice.PUBLIC_KEY));
+
+        //generate the credantionals and address
+        CREDENTIALS = Credentials.create(KEY_PAIR);
+        ADDRESS = CREDENTIALS.getAddress();
+    }
+
+    //save the data into internal storage
+    public void saveFile(String message, String filename) {
+        FileOutputStream outputStream;
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            outputStream.write(message.getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    //load the contract using user credential
+    private Attendees loadContract() throws Exception {
+        System.out.println("// Deploy contract");
+
+        contract = Attendees
+                .load(Web3jConstants.CONTRACT_ADDRESS, TeacherDashboard.web3j, CREDENTIALS, new DefaultGasProvider());
+
+        String contractAddress = contract.getContractAddress();
+        System.out.println("Contract address: " + contractAddress);
+        return contract;
     }
 
 }

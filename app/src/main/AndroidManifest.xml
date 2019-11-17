@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="online.forgottenbit.attendance1">
+    package="online.AttendanceManagementSystem.AAMS">
 
 
     <!-- Required for Nearby Connections -->
@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
 
     <application
         android:allowBackup="false"
@@ -24,21 +27,21 @@
         tools:replace="android:appComponentFactory"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".teacher.ReceiveStudentData"></activity>
-        <activity android:name=".teacher.AddStudent" />
-        <activity android:name=".teacher.BatchAndSubWiseAtten" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.teacher.ReceiveStudentData"></activity>
+        <activity android:name="online.AttendanceManagementSystem.AAMS.teacher.AddStudent" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.teacher.BatchAndSubWiseAtten" />
         <activity
-            android:name=".teacher.GenerateAttendanceSheet"
-            android:parentActivityName=".teacher.BatchAndSubWiseAtten" />
+            android:name="online.AttendanceManagementSystem.AAMS.teacher.GenerateAttendanceSheet"
+            android:parentActivityName="online.AttendanceManagementSystem.AAMS.teacher.BatchAndSubWiseAtten" />
         <activity
-            android:name=".teacher.BatchActivity"
-            android:parentActivityName=".teacher.TeacherDashboard" />
-        <activity android:name=".teacher.TeacherRegistration" />
-        <activity android:name=".teacher.TeacherDashboard" />
-        <activity android:name=".StudentVerification" />
-        <activity android:name=".StudentDashBoard" />
-        <activity android:name=".StudentRegistration" />
-        <activity android:name=".MainActivity">
+            android:name="online.AttendanceManagementSystem.AAMS.teacher.BatchActivity"
+            android:parentActivityName="online.AttendanceManagementSystem.AAMS.teacher.TeacherDashboard" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.teacher.TeacherRegistration" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.teacher.TeacherDashboard" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.StudentVerification" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.StudentDashBoard" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.StudentRegistration" />
+        <activity android:name="online.AttendanceManagementSystem.AAMS.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -13,7 +13,7 @@
         android:layout_height="35dp"
         android:textColor="#fff"
         android:paddingLeft="10dp"
-        android:text="Name : Satya Prakash      Roll : 160105029"
+        android:text="Name :       Roll : "
         android:id="@+id/studentName"
         android:textSize="18dp"/>
 
@@ -21,7 +21,7 @@
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:layout_height="wrap_content"
-        android:text="email : satya@yahoo.com"
+        android:text="Email : "
         android:paddingLeft="10dp"
         android:id="@+id/studentEmail"/>
 
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:textColor="#fff"
         android:layout_height="wrap_content"
-        android:text="email : satya@yahoo.com"
+        android:text="Date :"
         android:paddingLeft="10dp"
         android:id="@+id/timestamp"/>
 

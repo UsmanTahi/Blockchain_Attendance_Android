@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/addStudentB"
-        android:title="Add Students"
-        app:showAsAction="never"/>
     <item android:id="@+id/addSubjects"
         android:title="Add Subjects"
         android:icon="@drawable/batch_add_ic"
@@ -15,8 +12,8 @@
     <item android:id="@+id/debarredStudents"
         android:title="debarred students"
         app:showAsAction="never"/>
-
-    <item android:id="@+id/generateAttendanceSheet"
-        android:title="Generate Attendance Sheet"
+    <item android:id="@+id/syncSubjectsWithBlockchain"
+        android:title="Sync Subjects"
         app:showAsAction="never"/>
+
 </menu>

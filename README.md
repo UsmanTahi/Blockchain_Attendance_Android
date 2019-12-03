@@ -1,5 +1,4 @@
-# Blockchain_Attendance_Android
-Attendance Management System Blockchain based App
+# Blockchain based Attendance Management System App
 
   
 
@@ -120,7 +119,7 @@ We can put the corresponding contract address deployed by the teacher and all tr
 
 [https://lab.miguelmota.com/ethereum-input-data-decoder/example/](https://lab.miguelmota.com/ethereum-input-data-decoder/example/)
 
-__Developed by :  Arunika Yadav(1601CS56) | Mayank Wadhwani(1601CS51) | IIT Patna __
+__Developed by :  Arunika Yadav(1601CS56) | Mayank Wadhwani(1601CS51) | IIT Patna__
 
 __Under the guidance of : Dr. Raju Halder__
 

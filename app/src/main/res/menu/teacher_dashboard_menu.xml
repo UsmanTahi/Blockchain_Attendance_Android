@@ -11,13 +11,20 @@
         android:title="add batch"
         app:showAsAction="always"/>
 
-    <item android:id="@+id/sendEmailAll"
-        android:title="send email to all students"
+    <item android:id="@+id/connectEth"
+        android:title="Connect to Blockchain"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/checkContract"
+        android:title="Check/Deploy Contract"
         app:showAsAction="never"/>
 
     <item android:id="@+id/generateAllSList"
         android:title="generate list of students"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/checkWallet"
+        android:title="Check Wallet"
+        app:showAsAction="never"/>
 
 </menu>

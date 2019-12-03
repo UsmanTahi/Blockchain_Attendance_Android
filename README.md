@@ -5,15 +5,15 @@ Attendance Management System Blockchain based App
 
 This is a walkthrough for development / contributing to this repository. 
 
-Working Branch : integrating_web3. 
+## Working Branch : integrating_web3. 
 
   
 
-Technical Overview:
+## Technical Overview:
 
   
 
-Android App Overview : 
+### Android App Overview : 
 
   
 
@@ -37,7 +37,7 @@ The application uses google nearby service for marking attendance and IMEI for p
 
   
 
-Smart Contract:
+### Smart Contract:
 
 The smart contract is stored at : 
 
@@ -52,7 +52,7 @@ To learn how to write a smart contract you can explore this website: [https://cr
   
   
 
-Integrating Blockchain with Android:
+### Integrating Blockchain with Android:
 
   
 

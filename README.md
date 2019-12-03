@@ -68,7 +68,7 @@ npm install -g --unsafe-perm solc
 ```
  
 
-The version of web3j we used was 4.2.0: [https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0](https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0)
+The version of web3j we used was 4.2.0: [https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0](https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0)./web3j solidity generate -b <location to the bin file from above>/<conract_name>.bin -a <location to the abi file from above>/<conract_name>.abi -o <contract output directory> -p <application_name>
 
   
 
@@ -119,8 +119,8 @@ In addition to this we used the metamask chrome extension to send ether to the t
 We can put the corresponding contract address deployed by the teacher and all transactions corresponding to that address can be viewed. The input and outputs of the transactions are in the abi format. These can be decoded with the help of an online tool:
 
 [https://lab.miguelmota.com/ethereum-input-data-decoder/example/](https://lab.miguelmota.com/ethereum-input-data-decoder/example/)
-**
-Developed by :  Arunika Yadav(1601CS56) | Mayank Wadhwani(1601CS51) | IIT Patna 
 
-Under the guidance of : Dr. Raju Halder
-**
+__Developed by :  Arunika Yadav(1601CS56) | Mayank Wadhwani(1601CS51) | IIT Patna __
+
+__Under the guidance of : Dr. Raju Halder__
+

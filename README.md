@@ -2,9 +2,7 @@
 
   
 
-This is a walkthrough for development / contributing to this repository. 
-
-## Working Branch : integrating_web3. 
+This is a walkthrough for development / contributing to this repository.  
 
   
 

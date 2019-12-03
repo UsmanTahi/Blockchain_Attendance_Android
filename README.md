@@ -63,9 +63,9 @@ Please be patient with this part of the project. You need the web3j library to c
 The version of web3j that you use will influence the compatibility of your solidity compiler and the web3j library. Also install the solidity compiler[the latest version] .
 
   
-
+```
 npm install -g --unsafe-perm solc
-
+```
  
 
 The version of web3j we used was 4.2.0: [https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0](https://github.com/arunikayadav42/Blockchain_Attendance_Android/tree/integrating_web3/app/src/main/solidity/web3j-4.2.0)
@@ -75,10 +75,9 @@ The version of web3j we used was 4.2.0: [https://github.com/arunikayadav42/Block
 A bin and an abi file is generated for each contract in your solidity code. These can then be used to generate the corresponding java code.
 
   
-
+```
 solc Attendance.sol --bin --abi --optimize -o ./
-
-  
+```
 
 Attendance.sol is to be replaced by the name of your contract name and the -o flag corresponds to the output directory where you want your java source code generated from the abi and bin file to be stored. 
 
@@ -87,15 +86,14 @@ Attendance.sol is to be replaced by the name of your contract name and the -o fl
 The commands required to compile the solidity code[Make sure you are in the repository in which your web3j folder is] :
 
   
-
+```
 ./web3j solidity generate -b &lt;location to the bin file from above&gt;/&lt;conract_name&gt;.bin -a  &lt;location to the abi file from above&gt;/&lt;conract_name&gt;.abi -o &lt;contract output directory&gt; -p &lt;application_name&gt;
-
   
 
 Eg: 
 
 ./web3j solidity generate -b /home/arunika/Documents/ApAttendance/app/src/main/java/online/forgottenbit/attendance1/contract/Attendees.bin -a /home/arunika/Documents/ApAttendance/app/src/main/java/online/forgottenbit/attendance1/contract/Attendees.abi -o /home/arunika/Documents/ApAttendance/app/src/main/java/online/forgottenbit/attendance1/contract/ -p online.AttendanceManagementSystem.AAMS
-
+```
   
 
 P.S. Do not forget the -a, -o and the -b flags.

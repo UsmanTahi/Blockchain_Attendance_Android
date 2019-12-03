@@ -119,7 +119,8 @@ In addition to this we used the metamask chrome extension to send ether to the t
 We can put the corresponding contract address deployed by the teacher and all transactions corresponding to that address can be viewed. The input and outputs of the transactions are in the abi format. These can be decoded with the help of an online tool:
 
 [https://lab.miguelmota.com/ethereum-input-data-decoder/example/](https://lab.miguelmota.com/ethereum-input-data-decoder/example/)
-
+**
 Developed by :  Arunika Yadav(1601CS56) | Mayank Wadhwani(1601CS51) | IIT Patna 
 
 Under the guidance of : Dr. Raju Halder
+**
